@@ -10,6 +10,8 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [guestEmail, setGuestEmail] = useState("guest11111000@gmail.com")
+  const [guestPass, setGuestPass] = useState("123456")
 
   const user_auth = async (event) => {
     event.preventDefault();
@@ -21,6 +23,11 @@ function Login() {
     }
     setLoading(false);
   };
+
+  const guestSignIn = async (event) => {
+    event.preventDefault();
+    await login("guest11111000@gmail.com", "123456")
+  }
 
   return loading ? (
     <div className="login-spinner">
@@ -62,6 +69,9 @@ function Login() {
           />
           <button onClick={user_auth} type="submit">
             {signState}
+          </button>
+          <button onClick={guestSignIn}>
+            Sign In as Guest
           </button>
           <div className="form-help">
             <div className="remember">
